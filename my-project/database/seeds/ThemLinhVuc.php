@@ -19,13 +19,22 @@ class ThemLinhVuc extends Seeder
         	['ten_linh_vuc'=>'Âm nhạc']
         );
         $linhVuc = LinhVuc::create(
-        	['ten_linh_vuc'=>'Lập trình']
+        	['ten_linh_vuc'=>'Lịch sử']
         );
         $linhVuc = LinhVuc::create(
-        	['ten_linh_vuc'=>'Toán']
+        	['ten_linh_vuc'=>'Địa lý']
         );
         $linhVuc = LinhVuc::create(
-        	['ten_linh_vuc'=>'Hóa học']
+        	['ten_linh_vuc'=>'Văn học']
+        );
+         $linhVuc = LinhVuc::create(
+            ['ten_linh_vuc'=>'Động Vật']
+        );
+          $linhVuc = LinhVuc::create(
+            ['ten_linh_vuc'=>'Văn hoá']
+        );
+           $linhVuc = LinhVuc::create(
+            ['ten_linh_vuc'=>'Thực Vật']
         );
     }
 }
