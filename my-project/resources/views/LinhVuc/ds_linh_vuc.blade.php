@@ -26,6 +26,11 @@
             swal.fire("{{ session('success') }}","" , "success")
         </script>
     @endif
+    @if(session('error'))
+        <script>
+            swal.fire("{{ session('error') }}","" , "error")
+        </script>
+    @endif
      <!-- Datatables init -->
     <!-- <script src="{{asset('assets/js/pages/datatables.init.js') }}"></script> -->
     <script type="text/javascript">
@@ -63,9 +68,9 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-12 col-md-6">
-                                    <a href="{{route('linh-vuc.them-moi')}}" class="btn btn-info waves-effect waves-light">
+                                    <button data-toggle="modal" data-target="#ThemMoi" class="btn btn-info waves-effect waves-light">
                                         <i class="mdi mdi-content-save-all"></i> Thêm lĩnh vực 
-                                    </a>
+                                    </button>
                             </div>
                             <div class="col-sm-12 col-md-6" style="text-align: right;">
                                     <a href="{{route('linh-vuc.thung-rac')}}" class="btn btn-info waves-effect waves-light">
@@ -90,10 +95,36 @@
                                         <td>{{ $LinhVuc->id }}</td>
                                         <td>{{ $LinhVuc->ten_linh_vuc }}</td>
                                         <td>
-                                            <button onclick="capNhat({{$LinhVuc->id}})" type="button" class="btn btn-info waves-effect waves-light"><i class="mdi mdi-pen"></i></button>
+                                            <button data-toggle="modal" data-target="#CapNhat{{$LinhVuc->id}}" type="button" class="btn btn-info waves-effect waves-light"><i class="mdi mdi-pen"></i></button>
                                             <button onclick="Xoa({{$LinhVuc->id}})" type="button" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-delete"></i></button>
                                         </td>
                                     </tr>
+
+                                    <div class="modal fade" id="CapNhat{{$LinhVuc->id}}" role="dialog">
+                                        <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                            <h4 class="modal-title">Cập nhật lĩnh vực</h4>
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            </div>
+                                            <div class="modal-body">
+                                            <form action="{{ route('linh-vuc.xl-cap-nhat',$LinhVuc->id) }}" method="POST">
+                                                @csrf
+                                                <div class="form-group">
+                                                    <label for="exampleInputEmail1">Tên lĩnh vực</label>
+                                                    <input type="text" class="form-control" value="{{ $LinhVuc->ten_linh_vuc }}" 
+                                                    id="ten_linh_vuc" name="ten_linh_vuc">
+                                                </div>
+                                            <button type="submit" class="btn btn-info waves-effect waves-light"><i class="mdi mdi-content-save" ></i> Lưu</button>
+                                            
+                                            </form>
+                                            </div>
+                                            <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color: aliceblue; color: #6c757d;">Close</button>
+                                            </div>
+                                        </div>
+                                        </div>
+                                    </div>
                                 @endforeach
                             </tbody>
                         </table>
@@ -102,6 +133,32 @@
                 </div> <!-- end card -->
             </div><!-- end col-->
                 </div>
+        <!-- Modal -->
+        <div class="modal fade" id="ThemMoi" role="dialog">
+            <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h4 class="modal-title">Thêm mới lĩnh vực</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('linh-vuc.xl-them-moi') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Tên lĩnh vực</label>
+                            <input type="text" class="form-control" 
+                            id="ten_linh_vuc" name="ten_linh_vuc" placeholder="tên lĩnh vực">
+                        </div>
+                        <button type="submit" class="btn btn-info waves-effect waves-light"><i class="mdi mdi-content-save" ></i> Lưu</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="background-color: aliceblue; color: #6c757d;">Close</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
         <script>
             function Xoa($id) {
                 Swal.fire({

@@ -82,7 +82,7 @@
                         <a href="javascript:void(0);" class="user-edit"><i class="mdi mdi-pencil"></i></a>
                     </div>
             
-                    <h5><a href="javascript: void(0);">Marcia J. Melia</a> </h5>
+                    <h5><a href="javascript: void(0);">{{ Session::get('ho_ten') }}</a> </h5>
                     <p class="text-muted mb-0"><small>Product Owner</small></p>
                 </div>
 

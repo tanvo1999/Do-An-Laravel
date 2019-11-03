@@ -26,6 +26,11 @@
             swal.fire("{{ session('success') }}","" , "success")
         </script>
     @endif
+    @if(session('error'))
+        <script>
+            swal.fire("{{ session('error') }}","" , "error")
+        </script>
+    @endif
      <!-- Datatables init -->
     <!-- <script src="{{asset('assets/js/pages/datatables.init.js') }}"></script> -->
     <script type="text/javascript">

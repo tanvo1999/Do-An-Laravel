@@ -25,8 +25,6 @@ class LinhVucController extends Controller
         // }
         // else
         //     return redirect('dang-nhap');
-        
-                   
     }
 
     /**
@@ -38,8 +36,8 @@ class LinhVucController extends Controller
     {
         // if(Session::has('login') && Session::get('login') == true)
         // {
-            $thongBao =0;
-            return view('LinhVuc.them-moi-linh-vuc',compact('thongBao'));
+            // $thongBao =0;
+            // return view('LinhVuc.them-moi-linh-vuc',compact('thongBao'));
         // }
         // else
         //     return redirect('dang-nhap');
@@ -60,8 +58,7 @@ class LinhVucController extends Controller
                 'ten_linh_vuc' => 'required|unique:linh_vuc|max:255',
             ]);
             if ($validator->fails()) {
-                $thongBao = 2;
-                return view('LinhVuc.them-moi-linh-vuc',compact('thongBao')); 
+                return redirect('linh-vuc')->with('error', 'Thêm thất bại!'); 
             }
             else
             {
@@ -98,8 +95,8 @@ class LinhVucController extends Controller
     {
         // if(Session::has('login') && Session::get('login') == true)
         // {
-            $cnLinhVuc = LinhVuc::find($id);
-            return view('LinhVuc.cap-nhat-linh-vuc',compact('cnLinhVuc'));
+            // $cnLinhVuc = LinhVuc::find($id);
+            // return view('LinhVuc.cap-nhat-linh-vuc',compact('cnLinhVuc'));
         // }
         // else
         //     return redirect('dang-nhap');
@@ -122,7 +119,7 @@ class LinhVucController extends Controller
         if ($validator->fails()) {
             $capNhat = 1;
             $cnLinhVuc = $linhVuc;
-            return view('LinhVuc.cap-nhat-linh-vuc',compact('capNhat'),compact('cnLinhVuc')); 
+            return redirect('linh-vuc')->with('error', 'Cập nhật không thành công!'); 
         }
         else
         {

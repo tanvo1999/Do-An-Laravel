@@ -10,8 +10,12 @@ class CauHoi extends Model
 	use SoftDeletes;
     protected $table = 'cau_hoi';
 
-    public function linh_vuc()
+    public function linhVuc()
     {
-        return $this->belongsTo('App\LinhVuc');
+        return $this->belongsTo('App\LinhVuc','linh_vuc_id');
+    }
+    public function chiTietLuotChoi()
+    {
+        return $this->hasMany('App\ChiTietLuotChoi','cau_hoi_id');
     }
 }

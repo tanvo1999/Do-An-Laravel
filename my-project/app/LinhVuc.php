@@ -10,8 +10,8 @@ class LinhVuc extends Model
 	use SoftDeletes;
     protected $table = 'linh_vuc';
 
-    public function cau_hoi()
+    public function cauHoi()
     {
-        return $this->hasMany('App\CauHoi');
+        return $this->hasMany('App\CauHoi','linh_vuc_id');
     }
 }

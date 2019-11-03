@@ -39,7 +39,25 @@ class QuanTriVienController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'ten_dang_nhap' => 'required|unique:quan_tri_vien|max:255',
+            'mat_khau' => 'required',
+            'ho_ten' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect('quan-tri-vien')->with('error', 'Thêm thất bại!'); 
+        }
+        else
+        {
+            $max = DB::table('quan_tri_vien')->max('id') + 1; 
+            DB::statement("ALTER TABLE goi_credit AUTO_INCREMENT =  $max");
+            $quanTriVien = new QuanTriVien();
+            $quanTriVien->ten_dang_nhap = $request->ten_dang_nhap;
+            $quanTriVien->mat_khau = $request->mat_khau;
+            $quanTriVien->ho_ten = $request->ho_ten;
+            $quanTriVien->save();
+            return redirect('quan-tri-vien')->with('success', 'Thêm thành công!');
+        }
     }
 
     /**
@@ -84,7 +102,31 @@ class QuanTriVienController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $quanTriVien = QuanTriVien::find($id);
+        $quanTriVien->delete();
+        return redirect('quan-tri-vien')->with('success', 'Xóa thành công!');
+    }
+
+    public function bin()
+    {
+        $quanTriVien = QuanTriVien::onlyTrashed()->get();
+        return view('QuanTriVien.thung-rac',compact('quanTriVien'));
+    }
+
+    public function restore($id)
+    {
+        $quanTriVien = QuanTriVien::withTrashed()->find($id);
+        $quanTriVien->restore();
+        $quanTriVien = QuanTriVien::all();
+        return redirect('quan-tri-vien')->with('success', 'Phục hồi thành công!');
+    }
+
+    public function delete($id)
+    {
+        $quanTriVien = QuanTriVien::withTrashed()->find($id);
+        $quanTriVien->forceDelete();
+        $quanTriVien = QuanTriVien::all();
+        return redirect('quan-tri-vien/thung-rac')->with('success', 'Xóa lĩnh vực khỏi thùng rác thành công!');
     }
 
     public function login()

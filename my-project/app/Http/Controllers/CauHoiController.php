@@ -28,7 +28,7 @@ class CauHoiController extends Controller
      */
     public function create()
     {
-        
+        return view('CauHoi.them-moi-cau-hoi');
     }
 
     /**
@@ -39,7 +39,33 @@ class CauHoiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'noi_dung' => 'required|unique:cau_hoi',
+            'linh_vuc_id' =>'required',
+            'phuong_an_a' =>'required',
+            'phuong_an_b' =>'required',
+            'phuong_an_c' =>'required',
+            'phuong_an_d' =>'required',
+            'dap_an' =>'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect('cau-hoi')->with('error', 'Thêm thất bại!'); 
+        }
+        else
+        {
+            $max = DB::table('cau_hoi')->max('id') + 1; 
+            DB::statement("ALTER TABLE cau_hoi AUTO_INCREMENT =  $max");
+            $cauHoi = new CauHoi();
+            $cauHoi->noi_dung = $request->noi_dung;
+            $cauHoi->linh_vuc_id = $request->linh_vuc_id;
+            $cauHoi->phuong_an_a = $request->phuong_an_a;
+            $cauHoi->phuong_an_b = $request->phuong_an_b;
+            $cauHoi->phuong_an_c = $request->phuong_an_c;
+            $cauHoi->phuong_an_d = $request->phuong_an_d;
+            $cauHoi->dap_an = $request->dap_an;
+            $cauHoi->save();
+            return redirect('cau-hoi')->with('success', 'Thêm thành công!');
+        }
     }
 
     /**
@@ -84,6 +110,31 @@ class CauHoiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $cauHoi = CauHoi::find($id);
+        $cauHoi->delete();
+        $cauHoi = CauHoi::all();
+        return redirect('cau-hoi')->with('success', 'Xóa thành công!');
+    }
+
+    public function bin()
+    {
+        $cauHoi = CauHoi::onlyTrashed()->get();
+        return view('CauHoi.thung-rac',compact('cauHoi'));   
+    }
+
+    public function restore($id)
+    {
+        $cauHoi = CauHoi::withTrashed()->find($id);
+        $cauHoi->restore();
+        $cauHoi = CauHoi::all();
+        return redirect('cau-hoi')->with('success', 'Phục hồi thành công!');
+    }
+
+    public function delete($id)
+    {
+        $cauHoi = CauHoi::withTrashed()->find($id);
+        $cauHoi->forceDelete();
+        $cauHoi = CauHoi::all();
+        return redirect('cau-hoi/thung-rac')->with('success', 'Xóa lĩnh vực khỏi thùng rác thành công!');
     }
 }

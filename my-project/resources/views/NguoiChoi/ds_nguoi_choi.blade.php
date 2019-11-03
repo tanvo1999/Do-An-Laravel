@@ -68,9 +68,9 @@
                                     </a> -->
                             </div>
                             <div class="col-sm-12 col-md-6" style="text-align: right;">
-                                    <a href="{{route('nguoi-choi.thung-rac')}}" class="btn btn-info waves-effect waves-light">
+                                    <!-- <a href="{{route('nguoi-choi.thung-rac')}}" class="btn btn-info waves-effect waves-light">
                                         <i class="mdi mdi-content-save-all"></i> Thùng rác 
-                                    </a>
+                                    </a> -->
                             </div>
                         </div>
                         <br/>
@@ -99,10 +99,10 @@
                                         <td>{{ $NguoiChoi->hinh_dai_dien }}</td>
                                         <td>{{ $NguoiChoi->diem_cao_nhat }}</td>
                                         <td>{{ $NguoiChoi->credit }}</td>
-                                        <td>
+                                        <!-- <td>
                                             <button onclick="capNhat({{$NguoiChoi->id}})" type="button" class="btn btn-info waves-effect waves-light"><i class="mdi mdi-pen"></i></button>
                                             <button onclick="Xoa({{$NguoiChoi->id}})" type="button" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-delete"></i></button>
-                                        </td>
+                                        </td> -->
                                     </tr>
                                 @endforeach
                             </tbody>

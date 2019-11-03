@@ -43,14 +43,13 @@
                                 <input type="text" class="form-control" 
                                 id="ten_linh_vuc" name="ten_linh_vuc" placeholder="tên lĩnh vực">
                             </div>
-                           <button type="submit" class="btn btn-info waves-effect waves-light"><i class="mdi mdi-content-save" ></i> Lưu</button>
-                           
+                            <button type="submit" class="btn btn-info waves-effect waves-light">
+                                <i class="mdi mdi-content-save" ></i> Lưu
+                            </button>
                         </form>
-
                     </div> <!-- end card-body-->
                 </div> <!-- end card-->
             </div>
             <!-- end col -->
-
         </div>
     @endsection
