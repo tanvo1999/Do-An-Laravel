@@ -85,7 +85,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nội dung</th>
+                                    <th style="width:400px;">Nội dung</th>
                                     <th>Lĩnh vực</th> 
                                     <th>Phương án A</th> 
                                     <th>Phương án B</th>
@@ -100,7 +100,7 @@
                                     <tr>
                                         <td>{{ $CauHoi->id }}</td>
                                         <td>{{ $CauHoi->noi_dung }}</td>
-                                        <td>{{ $CauHoi->linh_vuc_id }}</td>
+                                        <td>{{ $CauHoi->linhVuc->ten_linh_vuc }}</td>
                                         <td>{{ $CauHoi->phuong_an_a }}</td>
                                         <td>{{ $CauHoi->phuong_an_b }}</td>
                                         <td>{{ $CauHoi->phuong_an_c }}</td>

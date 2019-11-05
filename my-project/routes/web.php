@@ -12,7 +12,7 @@
 */
 
 
-Route::get('dang-nhap','QuanTriVienController@login')->name('login');
+Route::get('dang-nhap','QuanTriVienController@login')->name('login')->middleware('guest');
 Route::post('dang-nhap','QuanTriVienController@xuly')->name('xl-dang-nhap');
 Route::get('dang-xuat','QuanTriVienController@logout')->name('dang-xuat');
 

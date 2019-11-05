@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use App\QuanTriVien;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class QuanTriVienController extends Controller
 {
@@ -146,7 +147,7 @@ class QuanTriVienController extends Controller
         if ($qtv == null || $qtv->ten_dang_nhap != $request->ten_dang_nhap) {
             return redirect('dang-nhap')->with('error', 'Tài khoản không tồn tại!');
         }
-        else if($qtv->mat_khau != $request->mat_khau){
+        else if(!Hash::check($request->mat_khau,$qtv->mat_khau)){
             return redirect('dang-nhap')->with('error', 'Sai mật khẩu!');
         }
         Auth::login($qtv);
