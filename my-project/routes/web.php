@@ -91,6 +91,19 @@ Route::prefix('quan-tri-vien')->group(function(){
 		Route::get('delete/{id}','QuanTriVienController@delete')->name('delete');
 	});
 });
+Route::prefix('cau-hinh-diem-cau-hoi')->group(function(){
+	Route::name('cau-hinh-diem-cau-hoi.')->group(function(){
+		Route::get('/','CauHinhDiemCauHoiController@index')->name('danh-sach');
+		Route::get('xoa/{id}','CauHinhDiemCauHoiController@destroy')->name('xoa');
+		Route::get('/them-moi', 'CauHinhDiemCauHoiController@create')->name('them-moi');
+		Route::post('/them-moi', 'CauHinhDiemCauHoiController@store')->name('xl-them-moi');
+		Route::get('/cap-nhat/{id}', 'CauHinhDiemCauHoiController@edit')->name('cap-nhat');
+		Route::post('/cap-nhat/{id}', 'CauHinhDiemCauHoiController@update')->name('xl-cap-nhat');
+		Route::get('/thung-rac', 'CauHinhDiemCauHoiController@bin')->name('thung-rac');
+		Route::get('restore/{id}','CauHinhDiemCauHoiController@restore')->name('restore');
+		Route::get('delete/{id}','CauHinhDiemCauHoiController@delete')->name('delete');
+	});
+});
 
 Route::get('api/linh-vuc','ApiController@layLV')->name('api-linh-vuc');
 Route::get('/api/cau-hoi/{id}','APIcontroller@laycauhoi')->name('lay_cauhoi');

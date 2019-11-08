@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\CauHoi;
+use App\LinhVuc;
 use Illuminate\Support\Facades\DB;
 
 
@@ -28,7 +29,8 @@ class CauHoiController extends Controller
      */
     public function create()
     {
-        return view('CauHoi.them-moi-cau-hoi');
+        $dsLinhVuc = LinhVuc::all();
+        return view('CauHoi.them-moi-cau-hoi',compact('dsLinhVuc'));
     }
 
     /**

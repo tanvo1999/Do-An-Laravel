@@ -413,13 +413,13 @@
                             <i class="la la-diamond"></i>Cấu hình <div class="arrow-down"></div></a>
                         <ul class="submenu">
                             <li class="has-submenu">
-                                <a href="#"><i class="fe-bookmark mr-1"></i> Điểm câu hỏi <div class="arrow-down"></div></a>
+                                <a href="{{ route('cau-hinh-diem-cau-hoi.danh-sach') }}"><i class="fe-bookmark mr-1"></i> Điểm câu hỏi <div class="arrow-down"></div></a>
                                 <ul class="submenu">
                                     <li>
-                                        <a href="forms-elements.html">Thêm cấu hình điểm câu hỏi</a>
+                                        <a href="{{ route('cau-hinh-diem-cau-hoi.them-moi') }}">Thêm cấu hình điểm câu hỏi</a>
                                     </li>
                                     <li>
-                                        <a href="forms-advanced.html">Thùng rác</a>
+                                        <a href="{{ route('cau-hinh-diem-cau-hoi.thung-rac') }}">Thùng rác</a>
                                     </li>
                                 </ul>
                             </li>

@@ -96,7 +96,7 @@
                                         <td>{{ $LinhVuc->ten_linh_vuc }}</td>
                                         <td>
                                             <button data-toggle="modal" data-target="#CapNhat{{$LinhVuc->id}}" type="button" class="btn btn-info waves-effect waves-light"><i class="mdi mdi-pen"></i></button>
-                                            <button onclick="Xoa({{$LinhVuc->id}})" type="button" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-delete"></i></button>
+                                            <button onclick="Xoa({{ $LinhVuc->id }})" type="button" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-delete"></i></button>
                                         </td>
                                     </tr>
 
