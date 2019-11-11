@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\LinhVuc;
 use App\CauHoi;
+use App\Gredit;
 
 class ApiController extends Controller
 {
@@ -94,6 +95,16 @@ class ApiController extends Controller
          $result = [
             'success'=>true,
             'data'=>$cauhoi
+        ];
+        return response()->json($result);
+    }
+
+    public function layCredit(){
+        $Gredit = Gredit()::all();
+
+        $result= [
+            'success'=>true,
+            'data'=>$Gredit
         ];
         return response()->json($result);
     }
