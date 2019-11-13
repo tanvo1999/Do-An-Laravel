@@ -153,7 +153,23 @@ class QuanTriVienController extends Controller
         Auth::login($qtv);
         session()->put('login', true);
         session()->put('ho_ten', $qtv->ho_ten);
-        return redirect('linh-vuc')->with('success','Đăng nhập thành công!');
+        return redirect('linh-vuc');
+        // $ten_dang_nhap = $request->ten_dang_nhap;
+        // $mat_khau=$request->mat_khau;
+        // if (!$token = auth('api')->attempt(['ten_dang_nhap' => $ten_dang_nhap,'password' => $mat_khau])) {
+        //     // if the credentials are wrong we send an unauthorized error in json format
+        //     return response()->json([
+        //         'success' => false,
+        //         'messager'=>"Đăng nhập thất bại",
+        //     ]);
+        // }
+        // return response()->json([
+        //     'success'=>true,
+        //     'messager'=>"Đăng nhập thành công",
+        //     'token' => $token,
+            
+        // ]);
+        
 
 
 

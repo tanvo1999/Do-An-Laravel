@@ -81,7 +81,6 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Tên đăng nhập</th>
-                                    <th>Mật khẩu</th>
                                     <th>Email</th>
                                     <th>Hình đại diện</th>
                                     <th>Điểm cao nhất</th>
@@ -94,7 +93,6 @@
                                     <tr>
                                         <td>{{ $NguoiChoi->id }}</td>
                                         <td>{{ $NguoiChoi->ten_dang_nhap }}</td>
-                                        <td>{{ $NguoiChoi->mat_khau }}</td>
                                         <td>{{ $NguoiChoi->email }}</td>
                                         <td>{{ $NguoiChoi->hinh_dai_dien }}</td>
                                         <td>{{ $NguoiChoi->diem_cao_nhat }}</td>

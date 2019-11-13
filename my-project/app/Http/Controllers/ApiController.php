@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\LinhVuc;
 use App\CauHoi;
 use App\Gredit;
+use App\NguoiChoi;
 
 class ApiController extends Controller
 {
@@ -14,6 +15,25 @@ class ApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function login(Request $request) {
+
+        $ten_dang_nhap = $request->ten_dang_nhap;
+        $mat_khau=$request->mat_khau;
+        if (!$token = auth('api')->attempt(['ten_dang_nhap' => $ten_dang_nhap,'password' => $mat_khau])) {
+            // if the credentials are wrong we send an unauthorized error in json format
+            return response()->json([
+                'success' => false,
+                'messager'=>"Đăng nhập thất bại",
+            ]);
+        }
+        return response()->json([
+            'success'=>true,
+            'messager'=>"Đăng nhập thành công",
+            'token' => $token,
+            
+        ]);
+    }
+
     public function layLV()
     {
         $linhVuc = LinhVuc::all()->random(4);

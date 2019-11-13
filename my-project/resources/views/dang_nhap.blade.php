@@ -96,7 +96,7 @@
     <script src="{{ asset('assets/libs/pdfmake/vfs_fonts.js') }}"></script>
     <!-- third party js ends -->
     <!-- Sweet Alerts js -->
-    <!-- <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('assets/libs/sweetalert2/sweetalert2.min.js') }}"></script>
 
     <script src="{{ asset('assets/js/pages/sweet-alerts.init.js') }}"></script>
     @if(session('error'))
@@ -112,6 +112,6 @@
                 swal.fire("{{ session('success') }}","" , "success")
             });
         </script>
-	@endif -->
+	@endif
 </body>
 </html>
