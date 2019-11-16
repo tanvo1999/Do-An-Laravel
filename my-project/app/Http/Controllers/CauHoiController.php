@@ -65,6 +65,7 @@ class CauHoiController extends Controller
             $cauHoi->phuong_an_c = $request->phuong_an_c;
             $cauHoi->phuong_an_d = $request->phuong_an_d;
             $cauHoi->dap_an = $request->dap_an;
+            $cauHoi->key = "";
             $cauHoi->save();
             return redirect('cau-hoi')->with('success', 'Thêm thành công!');
         }
