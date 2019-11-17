@@ -112,7 +112,7 @@ class ApiController extends Controller
     public function laycauhoi($id){
        // $cauhoi = CauHoi::find($id);
         $cauhoi = CauHoi::where('linh_vuc_id',$id)->get()->random(1);
-         $result = [
+        $result = [
             'success'=>true,
             'data'=>$cauhoi
         ];
@@ -128,4 +128,25 @@ class ApiController extends Controller
         ];
         return response()->json($result);
     }
+
+    public function UploadImg(Request $request){
+        if($request->hasFile('uploaded_file')){
+            $file = $request->uploaded_file;
+            $file->store('image');
+            return $file->getClientOriginalName();
+        }
+        return 'Fail';
+    }
+    public function Dangky(Request $request){
+     $nguoichoi = new NguoiChoi;
+
+     $nguoichoi->ten_dang_nhap = $request->ten_dang_nhap;
+     $nguoichoi->mat_khau = $request->mat_khau;
+     $nguoichoi->email=$request->email;
+     $nguoichoi->hinh_dai_dien = $request->hinh_dai_dien;
+     $nguoichoi->diem_cao_nhat = 0;
+     $nguoichoi->credit = 200;
+     $nguoichoi->save();
+     return 'Success';
+ }
 }
