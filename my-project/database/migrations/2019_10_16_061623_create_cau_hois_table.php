@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use App\CauHoi;
 
 class CreateCauHoisTable extends Migration
 {
@@ -35,6 +36,6 @@ class CreateCauHoisTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cau_hois');
+        Schema::dropIfExists('cau_hoi');
     }
 }
