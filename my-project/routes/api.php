@@ -19,3 +19,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('dang-nhap', 'APIController@login');
 Route::post('UploadImg', 'APIController@UploadImg');
 Route::post('Dangky', 'APIController@DangKy');
+Route::get('linh-vuc','ApiController@layLV')->name('api-linh-vuc');
+Route::get('cau-hoi/{id}','APIcontroller@laycauhoi')->name('lay_cauhoi');
+Route::get('lay_gredit','APIcontroller@layCredit')->name('lay_gredit');

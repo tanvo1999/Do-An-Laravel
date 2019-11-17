@@ -106,9 +106,7 @@ Route::prefix('cau-hinh-diem-cau-hoi')->group(function(){
 	});
 });
 
-Route::get('api/linh-vuc','ApiController@layLV')->name('api-linh-vuc');
-Route::get('/api/cau-hoi/{id}','APIcontroller@laycauhoi')->name('lay_cauhoi');
-Route::get('/api/lay_gredit','APIcontroller@layCredit')->name('lay_gredit');
+
 });
 
 Route::get('public/{filename}', function ($filename)
