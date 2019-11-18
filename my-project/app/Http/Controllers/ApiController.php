@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use App\LinhVuc;
 use App\CauHoi;
@@ -141,7 +141,7 @@ class ApiController extends Controller
      $nguoichoi = new NguoiChoi;
 
      $nguoichoi->ten_dang_nhap = $request->ten_dang_nhap;
-     $nguoichoi->mat_khau = $request->mat_khau;
+     $nguoichoi->mat_khau = Hash::make($request->mat_khau);
      $nguoichoi->email=$request->email;
      $nguoichoi->hinh_dai_dien = $request->hinh_dai_dien;
      $nguoichoi->diem_cao_nhat = 0;

@@ -54,7 +54,7 @@ class QuanTriVienController extends Controller
             DB::statement("ALTER TABLE goi_credit AUTO_INCREMENT =  $max");
             $quanTriVien = new QuanTriVien();
             $quanTriVien->ten_dang_nhap = $request->ten_dang_nhap;
-            $quanTriVien->mat_khau = $request->mat_khau;
+            $quanTriVien->mat_khau = Hash::make($request->mat_khau);
             $quanTriVien->ho_ten = $request->ho_ten;
             $quanTriVien->save();
             return redirect('quan-tri-vien')->with('success', 'Thêm thành công!');
