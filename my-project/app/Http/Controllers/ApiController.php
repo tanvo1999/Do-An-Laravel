@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\LinhVuc;
 use App\CauHoi;
 use App\Gredit;
@@ -32,6 +33,66 @@ class ApiController extends Controller
             'token' => $token,
             
         ]);
+    }
+
+    public function quenMatKhau(Request $request) {
+        $kq = NguoiChoi::where('ten_dang_nhap','=',$request->ten_dang_nhap)->first();
+
+        if ($kq == null) {
+            
+            return response()->json([
+                'success' => false,
+                'messager'=>"Tài khoản không tồn tại",
+            ]);
+        }
+        else if ($request->email != $kq->email){
+            return response()->json([
+                'success' => false,
+                'messager'=>"Email không trùng khớp",
+            ]);
+        }
+        return response()->json([
+            'success'=>true,
+            'messager'=>"Mật khẩu mới đã gửi vào mail của bạn"
+        ]);
+    }
+
+    public function capNhat(Request $request, $id) {
+        $nguoiChoi = NguoiChoi::find($id);
+        $kq = NguoiChoi::where('ten_dang_nhap','=',$request->ten_dang_nhap)->first();
+
+        $validator = Validator::make($request->all(), [
+            'mat_khau' => 'required|max:32',
+            'email' => 'required|max:255'
+        ]);
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'messager'=>"Cập nhật thất bại",
+            ]); 
+        }
+        else
+        {
+            $nguoiChoi->email = $request->email;
+            $nguoiChoi->hinh_dai_dien = $request->hinh_dai_dien;
+            $nguoiChoi->mat_khau = Hash::make($request->mat_khau);
+            $nguoiChoi->save();
+            if(!$token = auth('api')->attempt(['ten_dang_nhap' => $request->ten_dang_nhap,'password' => $request->mat_khau]))
+            {
+                return response()->json([
+                    'success' => false,
+                    'messager'=>"Cập nhật thất bại",
+                ]); 
+            }
+            else
+            {
+                return response()->json([
+                    'success' => true,
+                    'messager'=>"Cập nhật thành công",
+                    'token' => $token,
+                ]); 
+            }
+        }
     }
 
     public function layLV()

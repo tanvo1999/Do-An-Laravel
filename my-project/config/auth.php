@@ -68,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\QuanTriVien::class,
+            'model' => App\NguoiChoi::class,
         ],
         // 'users' => [
         //     'driver' => 'database',
