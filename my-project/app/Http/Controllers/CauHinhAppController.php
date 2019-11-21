@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
-use App\CauHinhDiemCauHoi;
+use App\CauHinhApp;
+
 use Illuminate\Support\Facades\DB;
 
-class CauHinhDiemCauHoiController extends Controller
+class CauHinhAppController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +19,8 @@ class CauHinhDiemCauHoiController extends Controller
      */
     public function index()
     {
-        $diemCauHoi = CauHinhDiemCauHoi::all();
-        return view('CauHinhDiemCauHoi.ds_cau_hinh_diem_cau_hoi',compact('diemCauHoi'));
+        $cauHinhApp = CauHinhApp::all();
+        return view('CauHinhApp.ds_cau_hinh_app',compact('cauHinhApp'));
     }
 
     /**
@@ -28,7 +30,7 @@ class CauHinhDiemCauHoiController extends Controller
      */
     public function create()
     {
-        //return view('CauHinhDiemCauHoi.them_cau_hinh_diem_cau_hoi');
+        //return view('CauHinhApp.them_cau_hinh_app');
     }
 
     /**
@@ -39,23 +41,21 @@ class CauHinhDiemCauHoiController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, 
+         $this->validate($request, 
             [ 
-                'thu_tu' =>'required|unique:cau_hinh_diem_cau_hoi',
-                'diem'=>'required|unique:cau_hinh_diem_cau_hoi'
+                'co_hoi_sai' =>'required',
+                'thoi_gian_tra_loi'=>'required|unique:cau_hinh_app'
             ] , 
             [
-                'thu_tu.required'=>"Bạn chưa nhập số thứ tự",
-                'thu_tu.unique' =>"Số thứ tự bạn nhập đã tồn tại",
-                'diem.required'=>"Bạn chưa nhập điểm",
-                'diem.unique'=>"Số điểm bạn nhập đã tồn tại"
+                'co_hoi_sai.required'=>"Bạn chưa nhập số lần cơ hội sai",
+                'thoi_gian_tra_loi.required'=>"Bạn chưa nhập thời gian trả lời câu hỏi"
             ]);
-        $cauHinhDiemCauHoi = new CauHinhDiemCauHoi();
-        $cauHinhDiemCauHoi->thu_tu = $request->thu_tu;
-        $cauHinhDiemCauHoi->diem = $request->diem;
-        $cauHinhDiemCauHoi->save();
+        $cauHinhApp = new CauHinhApp();
+        $cauHinhApp->co_hoi_sai = $request->co_hoi_sai;
+        $cauHinhApp->thoi_gian_tra_loi = $request->thoi_gian_tra_loi;
+        $cauHinhApp->save();
 
-        return redirect('cau-hinh-diem-cau-hoi')->with('thongbao', 'Thêm thành công!');
+        return redirect('cau-hinh-app')->with('thongbao', 'Thêm thành công!');
     }
 
     /**
@@ -89,21 +89,21 @@ class CauHinhDiemCauHoiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, 
+          $this->validate($request, 
             [ 
-                'thu_tu' =>'required',
-                'diem'=>'required'
+                'co_hoi_sai' =>'required',
+                'thoi_gian_tra_loi'=>'required'
             ] , 
             [
-                'thu_tu.required'=>"Bạn chưa nhập số thứ tự",
-                'diem.required'=>"Bạn chưa nhập điểm"
+                'co_hoi_sai.required'=>"Bạn chưa nhập số lần cơ hội sai",
+                'thoi_gian_tra_loi.required'=>"Bạn chưa nhập thời gian trả lời câu hỏi",
             ]);
-        $cauHinhDiemCauHoi = CauHinhDiemCauHoi::find($id);
-        $cauHinhDiemCauHoi->thu_tu = $request->thu_tu;
-        $cauHinhDiemCauHoi->diem = $request->diem;
-        $cauHinhDiemCauHoi->save();
+        $cauHinhApp = CauHinhApp::find($id);
+        $cauHinhApp->co_hoi_sai = $request->co_hoi_sai;
+        $cauHinhApp->thoi_gian_tra_loi = $request->thoi_gian_tra_loi;
+        $cauHinhApp->save();
 
-        return redirect('cau-hinh-diem-cau-hoi')->with('thongbao', 'Sửa thành công!');
+        return redirect('cau-hinh-app')->with('thongbao', 'Sửa thành công!');
     }
 
     /**

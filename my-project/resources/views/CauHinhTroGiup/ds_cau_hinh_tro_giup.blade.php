@@ -35,7 +35,7 @@
     <!-- <script src="{{asset('assets/js/pages/datatables.init.js') }}"></script> -->
     <script type="text/javascript">
     $(document).ready(function() {
-        $("#diem-cau-hoi-datatable").DataTable({
+        $("#cau-hinh-tro-giup-datatable").DataTable({
             language: {
                 paginate: {
                     previous: "<i class='mdi mdi-chevron-left'>",
@@ -61,7 +61,7 @@
     @endsection
 
 	@section('main-content')
-	<h1>Danh sách cấu hình điểm câu hỏi</h1>
+	<h1>Danh sách cấu hình trợ giúp</h1>
 		<div class="row">
             <div class="col-12">
                 <div class="card">
@@ -70,33 +70,48 @@
 
                             <div class="col-sm-12 col-md-6">
                                     <button data-toggle="modal" data-target="#ThemMoi" class="btn btn-info waves-effect waves-light">
-                                        <i class="mdi mdi-content-save-all"></i> Thêm cấu hình điểm câu hỏi
+                                        <i class="mdi mdi-content-save-all"></i> Thêm cấu hình trợ giúp
                                     </button>
                             </div>
-                           <!--  <div class="col-sm-12 col-md-6" style="text-align: right;">
-                                    <a href="{{route('linh-vuc.thung-rac')}}" class="btn btn-info waves-effect waves-light">
+                            <!-- <div class="col-sm-12 col-md-6" style="text-align: right;">
+                                    <a href="{{route('cau-hinh-app.thung-rac')}}" class="btn btn-info waves-effect waves-light">
                                         <i class="mdi mdi-content-save-all"></i> Thùng rác 
                                     </a>
                             </div> -->
                         </div>
                         <br/>
-                        <table id="diem-cau-hoi-datatable" class="table dt-responsive nowrap">
+                        <table id="cau-hinh-tro-giup-datatable" class="table dt-responsive nowrap">
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Loại trợ giúp</th>
                                     <th>Thứ tự</th>
-                                    <th>Điểm</th>
-                                    <th></th>                                 
+                                    <th>Credit</th> 
+                                    <th></th>                                
                                 </tr>
                             </thead>
-
-                             @if(count($errors) > 0)
+                            <!-- <script>
+                               $thoigian = setTimeout(function()
+                                {
+                                    @if(count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                        @foreach($errors->all() as $err)
+                                            {{ $err }}<br/>
+                                        @endforeach
+                                     //    </div>
+                                     // @endif
+                                },3000);
+                                clearTimeout($thoigian);
+                            </script> -->
+                            
+                            @if(count($errors) > 0)
                             <div class="alert alert-danger">
-                            @foreach($errors->all() as $err)
-                                {{ $err }}<br/>
-                             @endforeach
+                                @foreach($errors->all() as $err)
+                                    {{ $err }}<br/>
+                                 @endforeach
                             </div>
                             @endif
+
 
                             @if(session('thongbao'))
                                 <div class="alert alert-success">
@@ -106,37 +121,42 @@
                             @endif
                             
                             <tbody>
-                                @foreach($diemCauHoi as $DiemCauHoi)
+                                @foreach($cauHinhTroGiup as $CauHinhTroGiup)
                                     <tr>
-                                        <td>{{ $DiemCauHoi->id }}</td>
-                                        <td>{{ $DiemCauHoi->thu_tu }}</td>
-                                        <td>{{ $DiemCauHoi->diem }}</td>
+                                        <td>{{ $CauHinhTroGiup->id }}</td>
+                                        <td>{{ $CauHinhTroGiup->loai_tro_giup }}</td>
+                                        <td>{{ $CauHinhTroGiup->thu_tu }}</td>
+                                        <td>{{ $CauHinhTroGiup->credit }}</td>
                                         <td>
-                                            <button data-toggle="modal" data-target="#CapNhat{{$DiemCauHoi->id}}" type="button" class="btn btn-info waves-effect waves-light"><i class="mdi mdi-pen"></i></button>
-                                            <!-- <button onclick="Xoa({{ $DiemCauHoi->id 
-                                            }})" type="button" class="btn btn-danger waves-effect waves-light"><i class=" mdi mdi-delete"></i></button> -->
+                                            <button data-toggle="modal" data-target="#CapNhat{{$CauHinhTroGiup->id}}" type="button" class="btn btn-info waves-effect waves-light"><i class="mdi mdi-pen"></i></button>
                                         </td>
                                     </tr>
 
-                                    <div class="modal fade" id="CapNhat{{$DiemCauHoi->id}}" role="dialog">
+                                    <div class="modal fade" 
+                                    id="CapNhat{{$CauHinhTroGiup->id}}" role="dialog">
                                         <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                            <h4 class="modal-title">Cập nhật cấu hình điểm câu hỏi</h4>
+                                            <h4 class="modal-title">Cập nhật cấu hình trợ giúp</h4>
                                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                                             </div>
                                             <div class="modal-body">
-                                            <form action="{{ route('cau-hinh-diem-cau-hoi.xl-cap-nhat',$DiemCauHoi->id) }}" method="POST">
+                                            <form action="{{ route('cau-hinh-tro-giup.xl-cap-nhat',$CauHinhTroGiup->id) }}" method="POST">
                                                 @csrf
                                                 <div class="form-group">
+                                                    <label for="exampleInputEmail1">Loại trợ giúp</label>
+                                                    <input type="text" class="form-control" value="{{ $CauHinhTroGiup->loai_tro_giup }}" 
+                                                    id="loai_tro_giup" name="loai_tro_giup">
+                                                </div>
+                                                <div class="form-group">
                                                     <label for="exampleInputEmail1">Thứ tự</label>
-                                                    <input type="text" class="form-control" value="{{ $DiemCauHoi->thu_tu }}" 
+                                                    <input type="text" class="form-control" value="{{ $CauHinhTroGiup->thu_tu }}"
                                                     id="thu_tu" name="thu_tu">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="exampleInputEmail1">Điểm</label>
-                                                    <input type="text" class="form-control" value="{{ $DiemCauHoi->diem }}" 
-                                                    id="diem" name="diem">
+                                                    <label for="exampleInputEmail1">Credit</label>
+                                                    <input type="text" class="form-control" value="{{ $CauHinhTroGiup->credit }}"
+                                                    id="credit" name="credit">
                                                 </div>
                                             <button type="submit" class="btn btn-info waves-effect waves-light"><i class="mdi mdi-content-save" ></i> Lưu</button>
                                             
@@ -161,21 +181,26 @@
             <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                <h4 class="modal-title">Thêm mới cấu hình điểm câu hỏi</h4>
+                <h4 class="modal-title">Thêm mới cấu hình trợ giúp</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form action="{{ route('cau-hinh-diem-cau-hoi.xl-them-moi') }}" method="POST">
+                    <form action="{{ route('cau-hinh-tro-giup.xl-them-moi') }}" method="POST">
                         @csrf
+                        <div class="form-group">
+                            <label for="loai_tro_giup">Loại trợ giúp</label>
+                            <input type="text" class="form-control" 
+                            id="loai_tro_giup" name="loai_tro_giup" placeholder="Loại trợ giúp">
+                        </div>
                         <div class="form-group">
                             <label for="thu_tu">Thứ tự</label>
                             <input type="text" class="form-control" 
-                            id="thu_tu" name="thu_tu" placeholder="thứ tự">
+                            id="thu_tu" name="thu_tu" placeholder="Thứ tự">
                         </div>
                         <div class="form-group">
-                            <label for="diem">Điểm</label>
+                            <label for="credit">Credit</label>
                             <input type="text" class="form-control" 
-                            id="diem" name="diem" placeholder="điểm">
+                            id="credit" name="credit" placeholder="Credit">
                         </div>
                         <button type="submit" class="btn btn-info waves-effect waves-light"><i class="mdi mdi-content-save" ></i> Lưu</button>
                     </form>
@@ -199,13 +224,13 @@
                     cancelButtonText:'Không'
                     }).then((result) => {
                     if (result.value) {
-                        $url = 'cau-hinh-diem-cau-hoi/xoa/'+$id;
+                        $url = 'cau-hinh-app/xoa/'+$id;
                         open($url,"_self") 
                     }
                 })
             };
             function capNhat($id){
-                $url = 'cau-hinh-diem-cau-hoi/cap-nhat/'+$id;
+                $url = 'cau-hinh-app/cap-nhat/'+$id;
                 open($url,"_self");
             }
         </script>

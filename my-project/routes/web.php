@@ -107,6 +107,34 @@ Route::prefix('cau-hinh-diem-cau-hoi')->group(function(){
 });
 
 
+Route::prefix('cau-hinh-app')->group(function(){
+	Route::name('cau-hinh-app.')->group(function(){
+		Route::get('/','CauHinhAppController@index')->name('danh-sach');
+		Route::get('xoa/{id}','CauHinhAppController@destroy')->name('xoa');
+		Route::get('/them-moi', 'CauHinhAppController@create')->name('them-moi');
+		Route::post('/them-moi', 'CauHinhAppController@store')->name('xl-them-moi');
+		Route::get('/cap-nhat/{id}', 'CauHinhAppController@edit')->name('cap-nhat');
+		Route::post('/cap-nhat/{id}', 'CauHinhAppController@update')->name('xl-cap-nhat');
+		Route::get('/thung-rac', 'CauHinhAppController@bin')->name('thung-rac');
+		Route::get('restore/{id}','CauHinhAppController@restore')->name('restore');
+		Route::get('delete/{id}','CauHinhAppController@delete')->name('delete');
+	});
+});
+
+Route::prefix('cau-hinh-tro-giup')->group(function(){
+	Route::name('cau-hinh-tro-giup.')->group(function(){
+		Route::get('/','CauHinhTroGiupController@index')->name('danh-sach');
+		Route::get('xoa/{id}','CauHinhTroGiupController@destroy')->name('xoa');
+		Route::get('/them-moi', 'CauHinhTroGiupController@create')->name('them-moi');
+		Route::post('/them-moi', 'CauHinhTroGiupController@store')->name('xl-them-moi');
+		Route::get('/cap-nhat/{id}', 'CauHinhTroGiupController@edit')->name('cap-nhat');
+		Route::post('/cap-nhat/{id}', 'CauHinhTroGiupController@update')->name('xl-cap-nhat');
+		Route::get('/thung-rac', 'CauHinhTroGiupController@bin')->name('thung-rac');
+		Route::get('restore/{id}','CauHinhTroGiupController@restore')->name('restore');
+		Route::get('delete/{id}','CauHinhTroGiupController@delete')->name('delete');
+	});
+});
+
 });
 
 Route::get('public/{filename}', function ($filename)

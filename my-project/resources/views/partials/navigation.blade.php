@@ -412,38 +412,38 @@
                         <a href="#">
                             <i class="la la-diamond"></i>Cấu hình <div class="arrow-down"></div></a>
                         <ul class="submenu">
-                            <li class="has-submenu">
-                                <a href="{{ route('cau-hinh-diem-cau-hoi.danh-sach') }}"><i class="fe-bookmark mr-1"></i> Điểm câu hỏi <div class="arrow-down"></div></a>
-                                <ul class="submenu">
+                            <li>
+                                <a href="{{ route('cau-hinh-diem-cau-hoi.danh-sach') }}"><i class="fe-bookmark mr-1"></i> Điểm câu hỏi</a>
+                                <!-- <ul class="submenu">
                                     <li>
                                         <a href="{{ route('cau-hinh-diem-cau-hoi.them-moi') }}">Thêm cấu hình điểm câu hỏi</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('cau-hinh-diem-cau-hoi.thung-rac') }}">Thùng rác</a>
                                     </li>
-                                </ul>
+                                </ul> -->
                             </li>
-                            <li class="has-submenu">
-                                <a href="#"><i class="fe-grid mr-1"></i> Trợ giúp <div class="arrow-down"></div></a>
-                                <ul class="submenu">
+                            <li>
+                                <a href="{{ route('cau-hinh-tro-giup.danh-sach') }}"><i class="fe-bookmark mr-1"></i> Trợ giúp</a>
+                               <!--  <ul class="submenu">
                                     <li>
-                                        <a href="tables-basic.html">Thêm cấu hình trợ giúp</a>
+                                        <a href="{{ route('cau-hinh-tro-giup.them-moi') }}">Thêm cấu hình trợ giúp</a>
                                     </li>
                                     <li>
-                                        <a href="tables-datatables.html">Thùng rác</a>
+                                        <a href="{{ route('cau-hinh-tro-giup.thung-rac') }}">Thùng rác</a>
                                     </li>
-                                </ul>
+                                </ul> -->
                             </li>
-                            <li class="has-submenu">
-                                <a href="#"><i class="fe-bar-chart-2 mr-1"></i> App <div class="arrow-down"></div></a>
-                                <ul class="submenu">
+                            <li>
+                                <a href="{{ route('cau-hinh-app.danh-sach') }}"><i class="fe-bookmark mr-1"></i> App</a>
+                                <!-- <ul class="submenu">
                                     <li>
-                                        <a href="charts-apex.html">Thêm cấu hình App</a>
+                                        <a href="{{ route('cau-hinh-app.them-moi') }}">Thêm cấu hình App</a>
                                     </li>
                                     <li>
-                                        <a href="charts-flot.html">Thùng rác</a>
+                                        <a href="{{ route('cau-hinh-app.thung-rac') }}">Thùng rác</a>
                                     </li>
-                                </ul>
+                                </ul> -->
                             </li>
                             
                         </ul>

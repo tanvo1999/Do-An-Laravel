@@ -86,7 +86,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th style="width:400px;">Nội dung</th>
-                                    <th>Lĩnh vực</th> 
+                                    <th style="padding-right:100px;">Lĩnh vực</th> 
                                     <th>Phương án A</th> 
                                     <th>Phương án B</th>
                                     <th>Phương án C</th> 

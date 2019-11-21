@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CauHinhApp extends Model
 {
-	use SoftDeletes;
+	//use SoftDeletes;
     protected $table = 'cau_hinh_app';
 }
