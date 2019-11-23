@@ -13,12 +13,12 @@
 
 
 
-Route::get('dang-nhap','QuanTriVienController@login')->name('login')->middleware('guest');
+Route::get('dang-nhap','QuanTriVienController@login')->name('login')->middleware('guest:web');
 Route::post('dang-nhap','QuanTriVienController@xuly')->name('xl-dang-nhap');
+
+
+Route::middleware('auth:web')->group(function(){
 Route::get('dang-xuat','QuanTriVienController@logout')->name('dang-xuat');
-
-Route::middleware('auth')->group(function(){
-
 Route::get('/', function(){
 	return view('layout');
 })->name('dashboards');

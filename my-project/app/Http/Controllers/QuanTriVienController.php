@@ -156,7 +156,7 @@ class QuanTriVienController extends Controller
         return redirect('linh-vuc');
         // $ten_dang_nhap = $request->ten_dang_nhap;
         // $mat_khau=$request->mat_khau;
-        // if (!$token = auth('api')->attempt(['ten_dang_nhap' => $ten_dang_nhap,'password' => $mat_khau])) {
+        // if (!$token = auth('web')->attempt(['ten_dang_nhap' => $ten_dang_nhap,'password' => $mat_khau])) {
         //     // if the credentials are wrong we send an unauthorized error in json format
         //     return response()->json([
         //         'success' => false,

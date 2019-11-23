@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use JWTAuth;
+use JWTAuthException;
 use Illuminate\Support\Facades\Validator;
 use App\LinhVuc;
 use App\CauHoi;
@@ -93,6 +95,11 @@ class ApiController extends Controller
                 ]); 
             }
         }
+    }
+
+    public function getUserInfo(Request $request){
+        $user = JWTAuth::toUser($request->token);
+        return response()->json($user);
     }
 
     public function layLV()

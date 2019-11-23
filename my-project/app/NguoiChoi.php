@@ -11,6 +11,7 @@ class NguoiChoi extends Authenticatable implements JWTSubject
 {
 	use SoftDeletes;
     protected $table = 'nguoi_choi';
+    protected $hidden = ['mat_khau'];
     public function getAuthPassword()
     {
         return $this->mat_khau;
