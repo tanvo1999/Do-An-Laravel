@@ -10,6 +10,7 @@ use App\LinhVuc;
 use App\CauHoi;
 use App\Gredit;
 use App\NguoiChoi;
+use App\LuotChoi;
 
 class ApiController extends Controller
 {
@@ -109,6 +110,25 @@ class ApiController extends Controller
             'success'=>true,
             'data' => $linhVuc
         ];
+        return response()->json($result);
+    }
+
+    public function layLichSuChoiGame(Request $request)
+    {
+        $user = JWTAuth::toUser($request->token);
+        $luotChoi = LuotChoi::withTrashed()->where('nguoi_choi_id','=',$user->id)->get();
+        if(sizeof($luotChoi)>0){
+            $result = [
+                'success'=>true,
+                'data' => $luotChoi
+            ];
+        }
+        else
+        {
+            $result = [
+                'success'=>false
+            ];
+        }
         return response()->json($result);
     }
 

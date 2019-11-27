@@ -27,4 +27,5 @@ Route::get('cau-hoi/{id}','APIcontroller@laycauhoi')->name('lay_cauhoi');
 Route::get('lay_gredit','APIcontroller@layCredit')->name('lay_gredit');
 Route::group(['middleware' => 'jwt.auth'], function () {
     Route::get('user-info', 'APIcontroller@getUserInfo');
+    Route::get('lich-su-choi', 'APIcontroller@layLichSuChoiGame');
 });
