@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('dang-nhap','QuanTriVienController@login')->name('login')->middleware('guest:web');
 Route::post('dang-nhap','QuanTriVienController@xuly')->name('xl-dang-nhap');
 

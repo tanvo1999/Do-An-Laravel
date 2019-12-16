@@ -10,7 +10,6 @@ use App\LinhVuc;
 use App\CauHoi;
 use App\Gredit;
 use App\NguoiChoi;
-use App\ChiTietLuotChoi;
 use App\LuotChoi;
 
 class ApiController extends Controller
@@ -35,6 +34,7 @@ class ApiController extends Controller
             'success'=>true,
             'messager'=>"Đăng nhập thành công",
             'token' => $token,
+            
         ]);
     }
 
@@ -42,6 +42,7 @@ class ApiController extends Controller
         $kq = NguoiChoi::where('ten_dang_nhap','=',$request->ten_dang_nhap)->first();
 
         if ($kq == null) {
+            
             return response()->json([
                 'success' => false,
                 'messager'=>"Tài khoản không tồn tại",
@@ -71,7 +72,7 @@ class ApiController extends Controller
             return response()->json([
                 'success' => false,
                 'messager'=>"Cập nhật thất bại",
-            ]);
+            ]); 
         }
         else
         {
@@ -102,9 +103,8 @@ class ApiController extends Controller
         return response()->json($user);
     }
 
-    public function layLV(/*Request $request*/)
+    public function layLV()
     {
-        //$user = JWTAuth::toUser($request->token);
         $linhVuc = LinhVuc::all()->random(4);
         $result = [
             'success'=>true,
@@ -130,38 +130,6 @@ class ApiController extends Controller
             ];
         }
         return response()->json($result);
-    }
-
-    public function luuLuotChoi(Request $request)
-    {
-        $user = JWTAuth::toUser($request->token);
-        $luotChoi = new LuotChoi();
-        $luotChoi->nguoi_choi_id = $user->id;
-        $luotChoi->so_cau = $request->so_cau;
-        $luotChoi->diem = $request->diem;
-        $luotChoi->ngay_gio = $luotChoi->created_at;
-
-        $luotChoi->save();
-
-        return response()->json([
-            'success' => true
-        ]);
-    }
-
-    public function chiTietLuotChoi(Request $request)
-    {
-        $user = JWTAuth::toUser($request->token);
-        $ctluotChoi = new ChiTietLuotChoi();
-        $ctluotChoi->luot_choi_id = $user->id;
-        $ctluotChoi->cau_hoi_id = $request->cau_hoi_id;
-        $ctluotChoi->phuong_an = $request->phuong_an;
-        $ctluotChoi->diem = $request->diem;
-
-        $ctluotChoi->save();
-
-        return response()->json([
-            'success' => true
-        ]);
     }
 
     /**
@@ -231,8 +199,6 @@ class ApiController extends Controller
     }
     public function laycauhoi($id){
        // $cauhoi = CauHoi::find($id);
-
-        //$user = JWTAuth::toUser($request->token);
         $cauhoi = CauHoi::where('linh_vuc_id',$id)->get()->random(1);
         $result = [
             'success'=>true,
@@ -241,8 +207,7 @@ class ApiController extends Controller
         return response()->json($result);
     }
 
-    public function layCredit(/*Request $request*/){
-        //$user = JWTAuth::toUser($request->token);
+    public function layCredit(){
         $Gredit = Gredit()::all();
 
         $result= [
@@ -261,15 +226,15 @@ class ApiController extends Controller
         return 'Fail';
     }
     public function Dangky(Request $request){
-     $nguoichoi = new NguoiChoi();
+     $nguoichoi = new NguoiChoi;
 
      $nguoichoi->ten_dang_nhap = $request->ten_dang_nhap;
      $nguoichoi->mat_khau = Hash::make($request->mat_khau);
      $nguoichoi->email=$request->email;
      $nguoichoi->hinh_dai_dien = $request->hinh_dai_dien;
      $nguoichoi->diem_cao_nhat = 0;
-     $nguoichoi->credit = 1000;
+     $nguoichoi->credit = 200;
      $nguoichoi->save();
      return 'Success';
-    }
+ }
 }
