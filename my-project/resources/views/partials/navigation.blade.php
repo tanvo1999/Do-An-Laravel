@@ -194,8 +194,9 @@
             <div class="logo-box">
                 <a href="index.html" class="logo text-center">
                     <span class="logo-lg">
-                        <img src="{{asset('assets/images/logo-dark.png') }}" alt="" height="26">
+                     <img src="{{asset('assets/images/logo-dark.png') }}" alt="" height="26">
                         <!-- <span class="logo-lg-text-dark">Upvex</span> -->
+                       <!--  <a href="{{ route('linh-vuc.danh-sach')}}"> -->
                     </span>
                     <span class="logo-sm">
                         <!-- <span class="logo-sm-text-dark">X</span> -->
@@ -361,7 +362,7 @@
 
                     <li class="has-submenu">
                         <a href="{{ route('cau-hoi.danh-sach') }} ">
-                            <i class="la la-dashboard"></i>Câu hỏi <div class="arrow-down"></div></a>
+                           <i class="far fa-question-circle"></i>Câu hỏi <div class="arrow-down"></div></a>
                         <ul class="submenu">
                             <li>
                                 <a href="{{ route('cau-hoi.them-moi') }}">Thêm câu hỏi</a>
@@ -373,7 +374,7 @@
                     </li>
 
                     <li class="has-submenu">
-                        <a href="{{ route('goi-credit.danh-sach') }}"> <i class="la la-clone"></i>Gói credit <div class="arrow-down"></div></a>
+                        <a href="{{ route('goi-credit.danh-sach') }}"><i class="far fa-credit-card"></i></i>Gói credit <div class="arrow-down"></div></a>
                         <ul class="submenu">
                             <li>
                                 <a href="{{ route('goi-credit.them-moi') }}">Thêm gói credit</a>
@@ -385,7 +386,7 @@
                     </li>
 
                     <li class="has-submenu">
-                        <a href="{{ route('nguoi-choi.danh-sach') }}"> <i class="la la-clone"></i>Người chơi</a>
+                        <a href="{{ route('nguoi-choi.danh-sach') }}"><i class="fas fa-user"></i>Người chơi</a>
                         <!-- <ul class="submenu">
                             <li>
                                 <a href="{{ route('nguoi-choi.them-moi') }}">Thêm gói credit</a>
@@ -397,7 +398,7 @@
                     </li>
 
                     <li class="has-submenu">
-                        <a href="{{ route('quan-tri-vien.danh-sach') }}"> <i class="la la-clone"></i>Quản trị viên <div class="arrow-down"></div></a>
+                        <a href="{{ route('quan-tri-vien.danh-sach') }}"><i class="fas fa-users-cog"></i> Quản trị viên <div class="arrow-down"></div></a>
                         <ul class="submenu">
                             <li>
                                 <a href="{{ route('quan-tri-vien.them-moi') }}">Thêm quản trị viên</a>
