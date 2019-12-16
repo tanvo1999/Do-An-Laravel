@@ -25,7 +25,8 @@ Route::put('cap-nhat-tai-khoan/{id}', 'APIController@capNhat');
 Route::get('linh-vuc','ApiController@layLV')->name('api-linh-vuc');
 Route::get('cau-hoi/{id}','APIcontroller@laycauhoi')->name('lay_cauhoi');
 Route::get('lay_gredit','APIcontroller@layCredit')->name('lay_gredit');
-Route::group(['middleware' => 'jwt.auth'], function () {
+Route::middleware(['assign.guard:api','jwt.auth'])->group( function () {
     Route::get('user-info', 'APIcontroller@getUserInfo');
     Route::get('lich-su-choi', 'APIcontroller@layLichSuChoiGame');
+    Route::post('luu-luot-choi', 'APIcontroller@luuLuotChoi');
 });
