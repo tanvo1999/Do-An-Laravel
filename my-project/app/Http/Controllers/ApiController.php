@@ -112,6 +112,19 @@ class ApiController extends Controller
         ];
         return response()->json($result);
     }
+    
+    public function layIDLuotChoi(Request $request)
+    {
+        $user = JWTAuth::toUser($request->token);
+        $luotChoi = LuotChoi::withTrashed()->where('nguoi_choi_id','=',$user->id)->orderBy('id','desc')->first();
+
+            $result = [
+                'success'=>true,
+                'data' => $luotChoi
+            ];
+
+        return response()->json($result);
+    }
 
     public function layLichSuChoiGame(Request $request)
     {
@@ -137,10 +150,23 @@ class ApiController extends Controller
         $user = JWTAuth::toUser($request->token);
         $luotChoi = new LuotChoi();
         $luotChoi->nguoi_choi_id = $user->id;
+        $luotChoi->so_cau = 0;
+        $luotChoi->diem = 0;
+        $luotChoi->ngay_gio = $request->ngay_gio;
+
+        $luotChoi->save();
+
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
+    public function capNhatLuotChoi(Request $request)
+    {
+        $user = JWTAuth::toUser($request->token);
+        $luotChoi = LuotChoi::withTrashed()->where('nguoi_choi_id','=',$user->id)->orderBy('id','desc')->first();
         $luotChoi->so_cau = $request->so_cau;
         $luotChoi->diem = $request->diem;
-        $luotChoi->ngay_gio = $luotChoi->created_at;
-
         $luotChoi->save();
 
         return response()->json([
@@ -151,12 +177,12 @@ class ApiController extends Controller
     public function chiTietLuotChoi(Request $request)
     {
         $user = JWTAuth::toUser($request->token);
+        $luotChoi = LuotChoi::withTrashed()->where('nguoi_choi_id','=',$user->id)->orderBy('id','desc')->first();
         $ctluotChoi = new ChiTietLuotChoi();
-        $ctluotChoi->luot_choi_id = $user->id;
+        $ctluotChoi->luot_choi_id = $luotChoi->id;
         $ctluotChoi->cau_hoi_id = $request->cau_hoi_id;
         $ctluotChoi->phuong_an = $request->phuong_an;
         $ctluotChoi->diem = $request->diem;
-
         $ctluotChoi->save();
 
         return response()->json([
