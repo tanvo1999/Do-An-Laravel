@@ -12,6 +12,9 @@ use App\Gredit;
 use App\NguoiChoi;
 use App\ChiTietLuotChoi;
 use App\LuotChoi;
+use App\CauHinhApp;
+use App\CauHinhTroGiup;
+use App\CauHinhDiemCauHoi;
 
 class ApiController extends Controller
 {
@@ -188,6 +191,20 @@ class ApiController extends Controller
         return response()->json([
             'success' => true
         ]);
+    }
+
+    public function LayCauHinh()
+    {
+        $App = CauHinhApp::first();
+        $CHDCH = CauHinhDiemCauHoi::first();
+        $Tro_giup = CauHinhTroGiup::all();
+        $result = [
+            'success'=>true,
+            'app' => $App,
+            'cau_hoi' => $CHDCH,
+            'tro_giup' => $Tro_giup
+        ];
+        return response()->json($result);
     }
 
     /**
