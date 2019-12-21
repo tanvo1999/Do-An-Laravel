@@ -280,9 +280,10 @@ class ApiController extends Controller
 
     public function UploadImg(Request $request){
         if($request->hasFile('uploaded_file')){
-            $file = $request->uploaded_file;
-            $file->store('image');
-            return $file->getClientOriginalName();
+
+            $filename = $request->uploaded_file->getClientOriginalName();
+            $request->uploaded_file->storeAs('image',$filename);
+            return $filename;
         }
         return 'Fail';
     }

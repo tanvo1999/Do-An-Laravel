@@ -11,6 +11,23 @@
 |
 */
 
+// load img
+Route::get('storage/{filename}', function ($filename)
+{
+    $path = storage_path('app/image/'.$filename);
+    if (!File::exists($path)) {
+        abort(404);
+    }
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});
+
+
 Route::get('dang-nhap','QuanTriVienController@login')->name('login')->middleware('guest:web');
 Route::post('dang-nhap','QuanTriVienController@xuly')->name('xl-dang-nhap');
 
