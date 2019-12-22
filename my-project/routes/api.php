@@ -22,6 +22,7 @@ Route::post('quen-mat-khau', 'APIController@quenMatKhau');
 Route::put('cap-nhat-tai-khoan/{id}', 'APIController@capNhat');
 Route::get('lay-cau-hinh','ApiController@LayCauHinh');
 Route::get('linh-vuc','ApiController@layLV')->name('api-linh-vuc');
+Route::post('xoa-tai-khoan', 'APIController@deleteTaiKhoai');
 Route::get('cau-hoi/{id}','APIcontroller@laycauhoi')->name('lay_cauhoi');
 Route::get('lay_gredit','APIcontroller@layCredit')->name('lay_gredit');
 Route::middleware(['assign.guard:api','jwt.auth'])->group( function () {

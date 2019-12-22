@@ -8,7 +8,7 @@ use JWTAuthException;
 use Illuminate\Support\Facades\Validator;
 use App\LinhVuc;
 use App\CauHoi;
-use App\Gredit;
+use App\GoiCredit;
 use App\NguoiChoi;
 use App\ChiTietLuotChoi;
 use App\LuotChoi;
@@ -285,10 +285,8 @@ class ApiController extends Controller
         return response()->json($result);
     }
 
-    public function layCredit(/*Request $request*/){
-        //$user = JWTAuth::toUser($request->token);
-        $Gredit = Gredit()::all();
-
+    public function layCredit(){
+        $Gredit = GoiCredit::all();
         $result= [
             'success'=>true,
             'data'=>$Gredit
@@ -316,5 +314,18 @@ class ApiController extends Controller
      $nguoichoi->credit = 1000;
      $nguoichoi->save();
      return 'Success';
+    }
+
+    public function deleteTaiKhoai(Request $request){
+       $nguoichoi = NguoiChoi::where('email',$request->email)->first();
+       if($nguoichoi !=null)
+         $nguoichoi->delete();
+        unlink(storage_path('app/image/'.$request->img));
+       $result= [
+        'success'=>true,
+        'data'=>'Success'
+    ];
+            
+        return response()->json($result);
     }
 }
