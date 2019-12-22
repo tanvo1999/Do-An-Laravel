@@ -200,8 +200,9 @@ class ApiController extends Controller
         $Tro_giup = CauHinhTroGiup::all();
         $result = [
             'success'=>true,
-            'app' => $App,
-            'cau_hoi' => $CHDCH,
+            'co_hoi' => $App->co_hoi_sai,
+            'thoi_gian' => $App->thoi_gian_tra_loi,
+            'diem' => $CHDCH->diem,
             'tro_giup' => $Tro_giup
         ];
         return response()->json($result);
