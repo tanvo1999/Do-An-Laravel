@@ -13,7 +13,7 @@ class ThemCauHinhApp extends Seeder
     public function run()
     {
         $cauHinhApp = CauHinhApp::create(
-        	['co_hoi_sai'=>3, 'thoi_gian_tra_loi'=>30]
+        	['co_hoi_sai'=>5, 'thoi_gian_tra_loi'=>30]
         );
     }
 }

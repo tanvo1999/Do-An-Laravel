@@ -8,10 +8,13 @@ use JWTAuthException;
 use Illuminate\Support\Facades\Validator;
 use App\LinhVuc;
 use App\CauHoi;
-use App\Gredit;
+use App\GoiCredit;
 use App\NguoiChoi;
 use App\ChiTietLuotChoi;
 use App\LuotChoi;
+use App\CauHinhApp;
+use App\CauHinhTroGiup;
+use App\CauHinhDiemCauHoi;
 
 class ApiController extends Controller
 {
@@ -203,6 +206,21 @@ class ApiController extends Controller
         ]);
     }
 
+    public function LayCauHinh()
+    {
+        $App = CauHinhApp::first();
+        $CHDCH = CauHinhDiemCauHoi::first();
+        $Tro_giup = CauHinhTroGiup::all();
+        $result = [
+            'success'=>true,
+            'co_hoi' => $App->co_hoi_sai,
+            'thoi_gian' => $App->thoi_gian_tra_loi,
+            'diem' => $CHDCH->diem,
+            'tro_giup' => $Tro_giup
+        ];
+        return response()->json($result);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -280,10 +298,8 @@ class ApiController extends Controller
         return response()->json($result);
     }
 
-    public function layCredit(/*Request $request*/){
-        //$user = JWTAuth::toUser($request->token);
-        $Gredit = Gredit()::all();
-
+    public function layCredit(){
+        $Gredit = GoiCredit::all();
         $result= [
             'success'=>true,
             'data'=>$Gredit
@@ -293,9 +309,10 @@ class ApiController extends Controller
 
     public function UploadImg(Request $request){
         if($request->hasFile('uploaded_file')){
-            $file = $request->uploaded_file;
-            $file->store('image');
-            return $file->getClientOriginalName();
+
+            $filename = $request->uploaded_file->getClientOriginalName();
+            $request->uploaded_file->storeAs('image',$filename);
+            return $filename;
         }
         return 'Fail';
     }
@@ -310,5 +327,18 @@ class ApiController extends Controller
      $nguoichoi->credit = 1000;
      $nguoichoi->save();
      return 'Success';
+    }
+
+    public function deleteTaiKhoai(Request $request){
+       $nguoichoi = NguoiChoi::where('email',$request->email)->first();
+       if($nguoichoi !=null)
+         $nguoichoi->delete();
+        unlink(storage_path('app/image/'.$request->img));
+       $result= [
+        'success'=>true,
+        'data'=>'Success'
+    ];
+            
+        return response()->json($result);
     }
 }
