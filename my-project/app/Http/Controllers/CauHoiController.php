@@ -90,7 +90,9 @@ class CauHoiController extends Controller
      */
     public function edit($id)
     {
-        //
+        $cauHoi = CauHoi::find($id);
+        $dsLinhVuc = LinhVuc::all();
+        return view('CauHoi.cap_nhat_cau_hoi',compact('cauHoi','dsLinhVuc'));
     }
 
     /**
@@ -102,7 +104,44 @@ class CauHoiController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        // $thongBao = 0;
+        $this->validate($request, [
+            'noi_dung' => 'required|unique:cau_hoi',
+            'linh_vuc_id' =>'required',
+            'phuong_an_a' =>'required',
+            'phuong_an_b' =>'required',
+            'phuong_an_c' =>'required',
+            'phuong_an_d' =>'required',
+            'dap_an' =>'required'
+        ],
+        [
+            'noi_dung.required'=>"Bạn chưa nhập nội dung câu hỏi",
+            'noi_dung.unique'=>"Nội dung câu hỏi đã tồn tại",
+            'linh_vuc_id.required'=>"Bạn chưa nhập lĩnh vực id",
+            'phuong_an_a.required'=>"Bạn chưa nhập phương án A",
+            'phuong_an_b.required'=>"Bạn chưa nhập phương án B",
+            'phuong_an_c.required'=>"Bạn chưa nhập phương án C",
+            'dap_an.required'=>"Bạn chưa nhập đáp án"
+        ]);
+        // if ($validator->fails()) {
+        //     $capNhat = 1;
+        //     $cnCauHoi = $cauHoi;
+        //     return redirect('cau-hoi')->with('error', 'Cập nhật không thành công!'); 
+        // }
+       // else
+        //{
+            $cauHoi = CauHoi::find($id);
+            $cauHoi->noi_dung = $request->noi_dung;
+            $cauHoi->linh_vuc_id = $request->linh_vuc_id;
+            $cauHoi->phuong_an_a = $request->phuong_an_a;
+            $cauHoi->phuong_an_b = $request->phuong_an_b;
+            $cauHoi->phuong_an_c = $request->phuong_an_c;
+            $cauHoi->phuong_an_d = $request->phuong_an_d;
+            $cauHoi->dap_an = $request->dap_an;
+            $cauHoi->save();
+            return redirect('cau-hoi')->with('thongbao', 'Cập nhật thành công!');
+       // }
     }
 
     /**
