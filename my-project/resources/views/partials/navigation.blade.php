@@ -451,7 +451,17 @@
                     </li>
 
                     <li class="has-submenu">
-                        
+                        <a href="{{ route('thong-ke.thong-ke-dang-ki') }}">
+                            <i class="fas fa-chart-bar"></i>Thống kê <div class="arrow-down"></div>
+                        </a>
+                        <ul class="submenu">
+                        <li>
+                            <a href="#">Thống kê số người đăng kí trong tháng</a>
+                        </li>
+                        <li>
+                            <a href="#">Thùng rác</a>
+                        </li>
+                    </ul>
                     </li>
 
                     <li class="has-submenu">

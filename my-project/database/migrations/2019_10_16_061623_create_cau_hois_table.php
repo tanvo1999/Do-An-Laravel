@@ -25,6 +25,7 @@ class CreateCauHoisTable extends Migration
             $table->string('phuong_an_d');
             $table->string('dap_an');
             $table->string('key');
+            $table->timestamps();
             $table->softDeletes();
         });
     }
