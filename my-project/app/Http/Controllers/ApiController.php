@@ -15,6 +15,7 @@ use App\LuotChoi;
 use App\CauHinhApp;
 use App\CauHinhTroGiup;
 use App\CauHinhDiemCauHoi;
+use App\LishSuMuaCredit;
 
 class ApiController extends Controller
 {
@@ -133,6 +134,25 @@ class ApiController extends Controller
     {
         $user = JWTAuth::toUser($request->token);
         $luotChoi = LuotChoi::withTrashed()->where('nguoi_choi_id','=',$user->id)->get();
+        if(sizeof($luotChoi)>0){
+            $result = [
+                'success'=>true,
+                'data' => $luotChoi
+            ];
+        }
+        else
+        {
+            $result = [
+                'success'=>false
+            ];
+        }
+        return response()->json($result);
+    }
+
+    public function layLichSuMuaCredit(Request $request)
+    {
+        $user = JWTAuth::toUser($request->token);
+        $luotChoi = LishSuMuaCredit::withTrashed()->where('nguoi_choi_id','=',$user->id)->get();
         if(sizeof($luotChoi)>0){
             $result = [
                 'success'=>true,

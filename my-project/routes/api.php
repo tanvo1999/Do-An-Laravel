@@ -28,6 +28,7 @@ Route::get('lay_gredit','APIcontroller@layCredit')->name('lay_gredit');
 Route::middleware(['assign.guard:api','jwt.auth'])->group( function () {
     Route::get('user-info', 'APIcontroller@getUserInfo');
     Route::get('lich-su-choi', 'APIcontroller@layLichSuChoiGame');
+    Route::get('lich-su-mua-credit', 'APIcontroller@layLichSuMuaCredit');
     Route::post('luu-luot-choi', 'APIcontroller@luuLuotChoi');
     Route::post('luu-chi-tiet-luot-choi', 'APIcontroller@chiTietLuotChoi');
     Route::post('cap-nhat-luot-choi', 'APIcontroller@capNhatLuotChoi');
