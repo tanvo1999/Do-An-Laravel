@@ -77,6 +77,8 @@ Route::prefix('nguoi-choi')->group(function(){
 		Route::get('/thung-rac', 'NguoiChoiController@bin')->name('thung-rac');
 		Route::get('restore/{id}','NguoiChoiController@restore')->name('restore');
 		Route::get('delete/{id}','NguoiChoiController@delete')->name('delete');
+		Route::get('/thong-ke','NguoiChoiController@ThongkeSoNguoiDangKi')->name('thong-ke');
+		Route::get('/thong-ke-diem','NguoiChoiController@ThongkeNguoiChoiDiemCao')->name('thong-ke-diem');
 	});
 });
 

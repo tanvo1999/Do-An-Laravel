@@ -118,17 +118,21 @@ class ApiController extends Controller
     }
 
     public function layDanhSachNguoiChoi(Request $request) {
-        $page = $request->query('page', 1);
-        $limit = $request->query('limit', 25);
+        // $page = $request->query('page', 1);
+        // $limit = $request->query('limit', 25);
+        
+        $page = 1;
+        $limit = 20;
 
         $user = JWTAuth::toUser($request->token);//kiểm tra token
-        $listNguoiChoi = NguoiChoi::withTrashed()->where('id','=',$user->id)->orderBy('diem_cao_nhat', 'desc')->skip(($page - 1) * $limit)->take($limit)->get();
+        $listNguoiChoi = NguoiChoi::withTrashed()->orderBy('diem_cao_nhat', 'desc')->skip(($page - 1) * $limit)->take($limit)->get();
 
         return response()->json([
             'total' => NguoiChoi::count(),
             'data'  => $listNguoiChoi
         ]);
     }
+    
     
     public function layIDLuotChoi(Request $request)
     {

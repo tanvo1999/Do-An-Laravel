@@ -451,15 +451,15 @@
                     </li>
 
                     <li class="has-submenu">
-                        <a href="{{ route('thong-ke.thong-ke-dang-ki') }}">
+                        <a href="{{ route('nguoi-choi.thong-ke') }}">
                             <i class="fas fa-chart-bar"></i>Thống kê <div class="arrow-down"></div>
                         </a>
                         <ul class="submenu">
                         <li>
-                            <a href="#">Thống kê số người đăng kí trong tháng</a>
+                            <a href="{{ route('nguoi-choi.thong-ke') }}">Thống kê số người đăng kí trong tháng</a>
                         </li>
                         <li>
-                            <a href="#">Thùng rác</a>
+                            <a href="{{ route('nguoi-choi.thong-ke-diem') }}">Top 5 người chơi điểm cao</a>
                         </li>
                     </ul>
                     </li>
