@@ -143,4 +143,5 @@ class GoiCreditController extends Controller
         $goiCredit = GoiCredit::all();
         return redirect('goi-credit/thung-rac')->with('success', 'Xóa lĩnh vực khỏi thùng rác thành công!');
     }
+
 }

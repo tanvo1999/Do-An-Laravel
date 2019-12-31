@@ -5,12 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class LishSuMuaCredit extends Model
+class LichSuMuaCredit extends Model
 {
-	use SoftDeletes;
+    //use SoftDeletes;
     protected $table = 'lish_su_mua_credit';
 
-    public function nguoiChoi()
+     public function nguoiChoi()
     {
         return $this->belongsTo('App\NguoiChoi','nguoi_choi_id');
     }

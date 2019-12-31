@@ -140,7 +140,8 @@ Route::prefix('cau-hinh-app')->group(function(){
 
 Route::prefix('thong-ke')->group(function(){
 	Route::name('thong-ke.')->group(function(){
-		Route::get('/','ThongKeController@index')->name('thong-ke-dang-ki');
+		Route::get('/thong-ke-doanh-thu','MuaCreditController@ThongKeDoanhThu')->name('thong-ke-doanh-thu');
+		Route::get('/thong-ke-nguoi-mua-credit','MuaCreditController@ThongkeNguoiMuaCredit')->name('thong-ke-nguoi-mua-credit');
 		//Route::get('/','ThongKeController@destroy')->name('xoa');
 		//Route::get('/them-moi', 'ThongKeController@create')->name('them-moi');
 	});

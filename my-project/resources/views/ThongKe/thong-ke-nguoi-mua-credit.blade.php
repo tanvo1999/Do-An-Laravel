@@ -1,4 +1,4 @@
-	@extends('layout')
+    @extends('layout')
 
     @section('js')
     <!-- third party js -->
@@ -21,28 +21,6 @@
     <!-- Sweet alert init js-->
     <script src="{{ asset('assets/js/pages/sweet-alerts.init.js') }}"></script>
     <!-- third party js ends -->
-    @if(session('success'))
-        <script>
-            swal.fire("{{ session('success') }}","" , "success")
-        </script>
-    @endif
-     <!-- Datatables init -->
-    <!-- <script src="{{asset('assets/js/pages/datatables.init.js') }}"></script> -->
-    <script type="text/javascript">
-    $(document).ready(function() {
-        $("#linh-vuc-datatable").DataTable({
-            language: {
-                paginate: {
-                    previous: "<i class='mdi mdi-chevron-left'>",
-                    next: "<i class='mdi mdi-chevron-right'>"
-                }
-            },
-            drawCallback: function() {
-                $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
-            }
-        });
-    });
-    </script>
     @endsection
 
     @section('css')
@@ -55,9 +33,9 @@
     <!-- third party css end -->
     @endsection
 
-	@section('main-content')
-	<h1>Danh sách  top 10 người chơi điểm cao nhất</h1>
-		<div class="row">
+    @section('main-content')
+    <h1>Danh sách  top 10 người chơi mua credit cao nhất</h1>
+        <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
@@ -77,26 +55,19 @@
                         <br/>
                         <br/>
                         <table id="linh-vuc-datatable" class="table dt-responsive nowrap">
-                            <thead>
+                           <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Tên đăng nhập</th>
-                                    <th>Email</th>
-                                    <th>Hình đại diện</th>
-                                    <th>Điểm cao nhất</th>
-                                    <th>Credit</th>
-                                    <th></th>                                 
+                                    <th>Họ và tên</th>
+                                    <th>Tổng tiền</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($nguoiChoi as $NguoiChoi)
+                                @foreach($lichSuMuaCredit as $LichSuMuaCredit)
                                     <tr>
-                                        <td>{{ $NguoiChoi->id }}</td>
-                                        <td>{{ $NguoiChoi->ten_dang_nhap }}</td>
-                                        <td>{{ $NguoiChoi->email }}</td>
-                                        <td>{{ $NguoiChoi->hinh_dai_dien }}</td>
-                                        <td>{{ $NguoiChoi->diem_cao_nhat }}</td>
-                                        <td>{{ $NguoiChoi->credit }}</td>
+                                        <td>{{ $LichSuMuaCredit->id }}</td>
+                                        <td>{{ $LichSuMuaCredit->ten_dang_nhap }}</td>
+                                        <td>{{ $LichSuMuaCredit->tong_tien }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -105,27 +76,4 @@
                     </div> <!-- end card body-->
                 </div> <!-- end card -->
             </div><!-- end col-->
-        </div>
-        <script>
-            function Xoa($id) {
-                Swal.fire({
-                    title: 'Bạn có Muốn Xóa Không?',
-                    type: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Ok. Xóa nó!',
-                    cancelButtonText:'Không'
-                    }).then((result) => {
-                    if (result.value) {
-                        $url = 'linh-vuc/xoa/'+$id;
-                        open($url,"_self") 
-                    }
-                })
-            };
-            function capNhat($id){
-                $url = 'linh-vuc/cap-nhat/'+$id;
-                open($url,"_self");
-            }
-        </script>
-	@endsection
+    @endsection

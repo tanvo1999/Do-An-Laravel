@@ -97,7 +97,7 @@ class NguoiChoiController extends Controller
 
      public function ThongkeNguoiChoiDiemCao()
     {
-        $nguoiChoi = NguoiChoi::orderBy('diem_cao_nhat','desc')->take(5)->get();
+        $nguoiChoi = NguoiChoi::orderBy('diem_cao_nhat','desc')->take(10)->get();
         //$users = DB::table('nguoi_choi')->count('ten_dang_nhap')->whereMonth('created_at', '2019/12/28')->get();
         return view('ThongKe.thong-ke-nguoi-choi-diem-cao',compact('nguoiChoi'));
     }

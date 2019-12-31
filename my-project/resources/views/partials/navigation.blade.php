@@ -456,10 +456,16 @@
                         </a>
                         <ul class="submenu">
                         <li>
-                            <a href="{{ route('nguoi-choi.thong-ke') }}">Thống kê số người đăng kí trong tháng</a>
+                            <a href="{{ route('nguoi-choi.thong-ke') }}">Thống kê số người chơi đăng kí</a>
                         </li>
                         <li>
-                            <a href="{{ route('nguoi-choi.thong-ke-diem') }}">Top 5 người chơi điểm cao</a>
+                            <a href="{{ route('nguoi-choi.thong-ke-diem') }}">Top 10 người chơi điểm cao</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('thong-ke.thong-ke-doanh-thu') }}">Thống kê doanh thu</a>
+                        </li>
+                        <li>
+                             <a href="{{ route('thong-ke.thong-ke-nguoi-mua-credit') }}">Top 10 người mua Credit cao nhất</a>
                         </li>
                     </ul>
                     </li>
