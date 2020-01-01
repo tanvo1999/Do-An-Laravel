@@ -201,6 +201,23 @@ class ApiController extends Controller
         ]);
     }
 
+    public function MuagoiCredit(Request $request)
+    {
+        $user = JWTAuth::toUser($request->token);
+        $credit = new LichSuMuaCredit();
+        $credit->nguoi_choi_id = $user->id;
+        $credit->goi_credit_id = $request->goi_credit_id;
+        $credit->credit = $request->credit;
+        $credit->so_tien = $request->so_tien;
+        $credit->save();
+        $nguoiChoi = NguoiChoi::find($user->id);
+        $nguoiChoi->credit = $nguoiChoi->credit + $request->credit;
+        $nguoiChoi->save();
+        return response()->json([
+            'success' => true
+        ]);
+    }
+
     public function capNhatLuotChoi(Request $request)
     {
         $user = JWTAuth::toUser($request->token);

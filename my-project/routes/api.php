@@ -30,6 +30,7 @@ Route::middleware(['assign.guard:api','jwt.auth'])->group( function () {
     Route::get('lich-su-choi', 'APIcontroller@layLichSuChoiGame');
     Route::get('lich-su-mua-credit', 'APIcontroller@layLichSuMuaCredit');
     Route::post('luu-luot-choi', 'APIcontroller@luuLuotChoi');
+    Route::post('mua-goi-credit', 'APIcontroller@MuagoiCredit');
     Route::post('luu-chi-tiet-luot-choi', 'APIcontroller@chiTietLuotChoi');
     Route::post('cap-nhat-luot-choi', 'APIcontroller@capNhatLuotChoi');
     Route::get('bang-xep-hang', 'APIcontroller@layDanhSachNguoiChoi');
