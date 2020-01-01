@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use App\LinhVuc;
+use App\CauHoi;
 use Illuminate\Support\Facades\DB;
 
 class LinhVucController extends Controller
@@ -139,8 +140,11 @@ class LinhVucController extends Controller
     {
         // if(Session::has('login') && Session::get('login') == true)
         // {
+            $cauHoiLV = CauHoi::where('linh_vuc_id','=',$id)->delete();
+
             $linhVuc = LinhVuc::find($id);
             $linhVuc->delete();
+            
             $linhVuc = LinhVuc::all();
             return redirect('linh-vuc')->with('success', 'Xóa thành công!');
         // }

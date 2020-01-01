@@ -15,7 +15,7 @@ use App\LuotChoi;
 use App\CauHinhApp;
 use App\CauHinhTroGiup;
 use App\CauHinhDiemCauHoi;
-use App\LishSuMuaCredit;
+use App\LichSuMuaCredit;
 
 class ApiController extends Controller
 {
@@ -150,7 +150,7 @@ class ApiController extends Controller
     public function layLichSuChoiGame(Request $request)
     {
         $user = JWTAuth::toUser($request->token);
-        $luotChoi = LuotChoi::withTrashed()->where('nguoi_choi_id','=',$user->id)->get();
+        $luotChoi = LuotChoi::withTrashed()->where('nguoi_choi_id','=',$user->id)->orderBy('id','desc')->get();
         if(sizeof($luotChoi)>0){
             $result = [
                 'success'=>true,
@@ -169,7 +169,7 @@ class ApiController extends Controller
     public function layLichSuMuaCredit(Request $request)
     {
         $user = JWTAuth::toUser($request->token);
-        $luotChoi = LishSuMuaCredit::withTrashed()->where('nguoi_choi_id','=',$user->id)->get();
+        $luotChoi = LichSuMuaCredit::withTrashed()->where('nguoi_choi_id','=',$user->id)->orderBy('id','desc')->get();
         if(sizeof($luotChoi)>0){
             $result = [
                 'success'=>true,
@@ -208,7 +208,12 @@ class ApiController extends Controller
         $luotChoi->so_cau = $request->so_cau;
         $luotChoi->diem = $request->diem;
         $luotChoi->save();
-
+        if($request->diem >$user->diem_cao_nhat)
+        {
+            $nguoiChoi = NguoiChoi::find($user->id);
+            $nguoiChoi->diem_cao_nhat = $request->diem;
+            $nguoiChoi->save();
+        }
         return response()->json([
             'success' => true
         ]);

@@ -162,7 +162,7 @@
         <script>
             function Xoa($id) {
                 Swal.fire({
-                    title: 'Bạn có Muốn Xóa Không?',
+                    title: 'Xóa lĩnh vực sẽ mất hết những câu hỏi thuộc lĩnh vực này! Bạn có muốn tiếp tục?',
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
