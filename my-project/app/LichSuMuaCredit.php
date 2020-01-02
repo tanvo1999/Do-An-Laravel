@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LichSuMuaCredit extends Model
 {
-    use SoftDeletes;
+    //use SoftDeletes;
     protected $table = 'lish_su_mua_credit';
 
      public function nguoiChoi()
