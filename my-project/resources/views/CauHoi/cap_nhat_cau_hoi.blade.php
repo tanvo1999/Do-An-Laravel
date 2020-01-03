@@ -65,7 +65,7 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="mb-3 header-title">Cập nhật câu hỏi</h4>
+                        <h2>Cập nhật câu hỏi</h2>
                         <form action="{{ route('cau-hoi.xl-cap-nhat',$cauHoi->id) }}" method="POST">
                             @if(count($errors) > 0)
                             <div class="alert alert-danger">
@@ -90,21 +90,16 @@
                                 <input type="text" class="form-control" 
                                 id="linh_vuc_id" name="linh_vuc_id" placeholder="Lĩnh vực"> <br/> -->
                                 <div class="form-groups">
-                                    <!-- <label for="linh-vuc">Chọn tên lĩnh vực</label>
-                                    
+                                     <label for="exampleInputEmail1">Tên lĩnh vực</label>
                                     <select id="linh_vuc_id" name="linh_vuc_id" class="selectpicker" data-live-search="true"  data-style="btn-light"  >
-                                         <option>Chọn lĩnh vực</option>
+                                        <option value="{{ $cauHoi->linhVuc->id}} ">{{ $cauHoi->linhVuc->ten_linh_vuc}}</option>
                                         @foreach($dsLinhVuc as $linhVuc)
                                             <option value="{{ $linhVuc->id }}" >{{ $linhVuc->ten_linh_vuc}}</option>
                                         @endforeach
                                        
-                                    </select> -->
-
-                                    <label for="exampleInputEmail1">Tên lĩnh vực</label>
-                                    <input type="text" class="form-control" 
-                                    id="linh_vuc_id" name="linh_vuc_id" value="{{ $cauHoi->linh_vuc_id }}"><br/>
-                                    <!-- <option value="{{ $cauHoi->linh_vuc_id }}" >{{ $linhVuc->ten_linh_vuc}}</option> -->
-
+                                    </select>
+                                    <!-- <label for="exampleInputEmail1">Tên lĩnh vực</label>
+                                    <option>{{ $cauHoi->linhVuc->ten_linh_vuc}}</option> -->
                                 </div>
                                 <label for="exampleInputEmail1">Phương án A</label>
                                 <input type="text" class="form-control" 

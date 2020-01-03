@@ -107,7 +107,7 @@ class CauHoiController extends Controller
         
         // $thongBao = 0;
         $this->validate($request, [
-            'noi_dung' => 'required|unique:cau_hoi',
+            'noi_dung' => 'required|',
             'linh_vuc_id' =>'required',
             'phuong_an_a' =>'required',
             'phuong_an_b' =>'required',
@@ -117,7 +117,6 @@ class CauHoiController extends Controller
         ],
         [
             'noi_dung.required'=>"Bạn chưa nhập nội dung câu hỏi",
-            'noi_dung.unique'=>"Nội dung câu hỏi đã tồn tại",
             'linh_vuc_id.required'=>"Bạn chưa nhập lĩnh vực id",
             'phuong_an_a.required'=>"Bạn chưa nhập phương án A",
             'phuong_an_b.required'=>"Bạn chưa nhập phương án B",
